@@ -162,6 +162,11 @@ public class UIInventory : MonoBehaviour
             selectedItemStatName.text += selectedItem.consumables[i].type.ToString() + "\n";
             selectedItemStatValue.text += selectedItem.consumables[i].value.ToString() + "\n";
         }
+        for (int i = 0; i < selectedItem.EquipItems.Length; i++)
+        {
+            selectedItemStatName.text += selectedItem.EquipItems[i].equipBuffType.ToString() + "\n";
+            selectedItemStatValue.text += selectedItem.EquipItems[i].value.ToString() + "\n";
+        }
 
         useButton.SetActive(selectedItem.type == ItemType.Consumable);
         equipButton.SetActive(selectedItem.type == ItemType.Equipable && !slots[index].equipped);
@@ -244,7 +249,23 @@ public class UIInventory : MonoBehaviour
         curEquipIndex = selectedItemIndex;
         CharacterManager.Instance.Player.equip.EquipNew(selectedItem);
         UpdateUI();
-
+        
+           for (int i = 0; i < selectedItem.EquipItems.Length; i++)
+            {
+                switch (selectedItem.EquipItems[i].equipBuffType)
+                {
+                    case EquipBuffType.Health:
+                        condition.HP_Up(selectedItem.EquipItems[i].value);
+                        break;
+                    case EquipBuffType.Jump:
+                        condition.JumpPower_Up(selectedItem.EquipItems[i].value);
+                        break;
+                    case EquipBuffType.Speed:
+                        condition.Speed_Up(selectedItem.EquipItems[i].value);
+                        break;
+                }
+            }
+           
         SelectItem(selectedItemIndex);
     }
 
@@ -262,6 +283,21 @@ public class UIInventory : MonoBehaviour
 
     public void OnUnEquipButton()
     {
+        for (int i = 0; i < selectedItem.EquipItems.Length; i++)
+        {
+            switch (selectedItem.EquipItems[i].equipBuffType)
+            {
+                case EquipBuffType.Health:
+                    condition.HP_Down(selectedItem.EquipItems[i].value);
+                    break;
+                case EquipBuffType.Jump:
+                    condition.JumpPower_Down(selectedItem.EquipItems[i].value);
+                    break;
+                case EquipBuffType.Speed:
+                    condition.Speed_Down(selectedItem.EquipItems[i].value);
+                    break;
+            }
+        }
         UnEquip(selectedItemIndex);
     }
 

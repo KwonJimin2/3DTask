@@ -14,6 +14,13 @@ public enum ConsumableType
     Speed
 }
 
+public enum EquipBuffType
+{
+    Speed,
+    Jump,
+    Health
+}
+
 [System.Serializable]
 public class ItemDataConsumable
 {
@@ -21,23 +28,32 @@ public class ItemDataConsumable
     public float value;
 }
 
-[CreateAssetMenu(fileName = "Item", menuName = "New Item")]
-public class ItemData : ScriptableObject
-{
-    [Header("Info")]
-    public string displayName;
-    public string description;
-    public ItemType type;
-    public Sprite icon;
-    public GameObject dropPrefab;
+    [System.Serializable]
+    public class ItemDataEquip
+    {
+        public EquipBuffType equipBuffType;
+        public float value;
+    }
 
-    [Header("Stacking")]
-    public bool canStack;
-    public int maxStackAmount;
 
-    [Header("Consumable")]
-    public ItemDataConsumable[] consumables;
+    [CreateAssetMenu(fileName = "Item", menuName = "New Item")]
+    public class ItemData : ScriptableObject
+    {
+        [Header("Info")]
+        public string displayName;
+        public string description;
+        public ItemType type;
+        public Sprite icon;
+        public GameObject dropPrefab;
 
-    [Header("Equip")]
-    public GameObject equipPrefab;
-}
+        [Header("Stacking")]
+        public bool canStack;
+        public int maxStackAmount;
+
+        [Header("Consumable")]
+        public ItemDataConsumable[] consumables;
+
+        [Header("Equip")]
+        public ItemDataEquip[] EquipItems;
+        public GameObject equipPrefab;
+    }

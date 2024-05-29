@@ -18,6 +18,8 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     public float noHungerHealthDecay;
     public event Action onTakeDamage;
 
+
+
     private void Update()
     {
         hunger.Subtract(hunger.decayRate * Time.deltaTime);
@@ -53,10 +55,53 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     {
             GameObject player = GameObject.Find("Player");
             PlayerController playercontroller = player.GetComponent<PlayerController>();
-            playercontroller.moveSpeed = amount;
+            playercontroller.moveSpeed += amount;
 
             yield return new WaitForSecondsRealtime(10);
-            playercontroller.moveSpeed = 5;
+            playercontroller.moveSpeed -= amount;
+    }
+
+    public void HP_Up(float amount)
+    {
+        GameObject health = GameObject.Find("Health");
+        Condition condition = health.GetComponent<Condition>();
+        condition.maxValue += amount;
+        condition.curValue += amount;
+    }
+
+    public void HP_Down(float amount)
+    {
+        GameObject health = GameObject.Find("Health");
+        Condition condition = health.GetComponent<Condition>();
+        condition.maxValue -= amount;
+        condition.curValue = Mathf.Min(condition.curValue , condition.maxValue);
+    }
+
+    public void JumpPower_Up(float amount) 
+    {
+        GameObject player = GameObject.Find("Player");
+        PlayerController playercontroller = player.GetComponent<PlayerController>();
+        playercontroller.jumpPower += amount;
+    }
+
+    public void JumpPower_Down(float amount)
+    {
+        GameObject player = GameObject.Find("Player");
+        PlayerController playercontroller = player.GetComponent<PlayerController>();
+        playercontroller.jumpPower -= amount;
+    }
+
+    public void Speed_Up(float amount)
+    {
+        GameObject player = GameObject.Find("Player");
+        PlayerController playercontroller = player.GetComponent<PlayerController>();
+        playercontroller.moveSpeed += amount;
+    }
+    public void Speed_Down(float amount)
+    {
+        GameObject player = GameObject.Find("Player");
+        PlayerController playercontroller = player.GetComponent<PlayerController>();
+        playercontroller.moveSpeed -= amount;
     }
 
 

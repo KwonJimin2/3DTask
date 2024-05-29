@@ -10,18 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eeddda2da51b7be448644aa51f1e9eb3, type: 3}
-  m_Name: Item_Sword
+  m_Name: Item_Dagger
   m_EditorClassIdentifier: 
-  displayName: "\uC7A5\uAC80"
-  description: "\uB4E0\uB4E0\uD55C \uACF5\uACA9\uC6A9 \uAC80\uC785\uB2C8\uB2E4. \uCCB4\uB825\uC774
-    \uC57D\uAC04 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  displayName: "\uC554\uC0B4\uC790 \uB2E8\uAC80"
+  description: "\uCC29\uC6A9\uC2DC \uC774\uB3D9\uC18D\uB3C4 \uBC0F \uC810\uD504\uB825\uC774
+    \uC99D\uAC00\uD558\uB294 \uB2E8\uAC80\uC785\uB2C8\uB2E4."
   type: 1
   icon: {fileID: 21300000, guid: 4f2f320a217307a48a107491b1d17ebb, type: 3}
-  dropPrefab: {fileID: 3296660226285046, guid: 14fba9eb3813d8b4c9657addef53355c, type: 3}
+  dropPrefab: {fileID: 3296660226285046, guid: 75cfa8adb6c36cf45a19f27449e5439d, type: 3}
   canStack: 0
   maxStackAmount: 0
   consumables: []
   EquipItems:
-  - equipBuffType: 2
-    value: 50
-  equipPrefab: {fileID: 5830255007686457710, guid: 2eb2138c59ebee14e9e938585ebacd3b, type: 3}
+  - equipBuffType: 0
+    value: 3
+  - equipBuffType: 1
+    value: 40
+  equipPrefab: {fileID: 5830255007686457710, guid: f7bf885ffc3922d4da36c084c6206425, type: 3}

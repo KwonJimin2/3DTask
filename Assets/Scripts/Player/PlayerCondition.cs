@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 
@@ -43,6 +44,22 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         hunger.Add(amount);
     }
 
+    public void Boost(float amount)
+    {
+        StartCoroutine(BoostTime(amount));
+    }
+
+    public IEnumerator BoostTime(float amount)
+    {
+            GameObject player = GameObject.Find("Player");
+            PlayerController playercontroller = player.GetComponent<PlayerController>();
+            playercontroller.moveSpeed = amount;
+
+            yield return new WaitForSecondsRealtime(10);
+            playercontroller.moveSpeed = 5;
+    }
+
+
     public void Die()
     {
         Debug.Log("플레이어가 죽었다.");
@@ -63,4 +80,5 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         stamina.Subtract(amount);
         return true;
     }
+
 }

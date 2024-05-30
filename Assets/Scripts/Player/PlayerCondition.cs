@@ -48,10 +48,10 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     public void Boost(float amount)
     {
-        StartCoroutine(BoostTime(amount));
+        StartCoroutine(SpeedBoostTime(amount));
     }
 
-    public IEnumerator BoostTime(float amount)
+    public IEnumerator SpeedBoostTime(float amount)
     {
             GameObject player = GameObject.Find("Player");
             PlayerController playercontroller = player.GetComponent<PlayerController>();

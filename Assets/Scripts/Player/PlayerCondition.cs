@@ -66,7 +66,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         GameObject health = GameObject.Find("Health");
         Condition condition = health.GetComponent<Condition>();
         condition.maxValue += amount;
-        condition.curValue += amount;
+        //condition.curValue += amount; 최대 체력이 늘어나는 아이템을 꼈을때, 현재 체력이 늘어나는 케이스와 늘어나지 않는 케이스가 있는데, 현재 체력이 늘어나면 여러가지 버그가 생기기 때문에 일단 막아놓았음.
     }
 
     public void HP_Down(float amount)
@@ -74,7 +74,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         GameObject health = GameObject.Find("Health");
         Condition condition = health.GetComponent<Condition>();
         condition.maxValue -= amount;
-        condition.curValue = Mathf.Min(condition.curValue , condition.maxValue);
+        //condition.curValue = Mathf.Max(condition.curValue - amount , 1.0f); 
     }
 
     public void JumpPower_Up(float amount) 
